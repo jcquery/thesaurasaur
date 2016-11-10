@@ -2,7 +2,8 @@
 
 const express = require('express');
 const pos = require('pos');
-
+const axios = require('axios');
+const key = process.env.API_KEY;
 const router = express.Router();
 
 router.post('/parse', (req, res, next) => {
@@ -15,7 +16,7 @@ router.post('/parse', (req, res, next) => {
   const words = new pos.Lexer().lex(text);
   const tagger = new pos.Tagger();
   const taggedWords = tagger.tag(words);
-
+  
   res.send(taggedWords);
 });
 
